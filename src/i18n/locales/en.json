@@ -1,0 +1,24 @@
+{
+  "home": {
+    "title": "MBTI Personality Test",
+    "subtitle": "Discover your true self",
+    "start_simple": "Quick Test (30 Questions)",
+    "start_detailed": "Detailed Test (70 Questions)",
+    "desc_simple": "Takes about 5 minutes",
+    "desc_detailed": "Takes about 15 minutes, more accurate"
+  },
+  "test": {
+    "progress": "Progress",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "result": {
+    "title": "Your Personality Type",
+    "analysis": "Analysis",
+    "strengths": "Strengths",
+    "blindspots": "Blind Spots",
+    "career": "Career Direction",
+    "export": "Save Result",
+    "retake": "Retake Test"
+  }
+}

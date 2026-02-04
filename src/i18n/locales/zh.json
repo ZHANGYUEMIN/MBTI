@@ -1,0 +1,24 @@
+{
+  "home": {
+    "title": "MBTI 人格测试",
+    "subtitle": "探索你真实的内心世界",
+    "start_simple": "快速测试 (30题)",
+    "start_detailed": "精细测试 (70题)",
+    "desc_simple": "耗时约 5 分钟",
+    "desc_detailed": "耗时约 15 分钟，结果更精准"
+  },
+  "test": {
+    "progress": "答题进度",
+    "prev": "上一题",
+    "next": "下一题"
+  },
+  "result": {
+    "title": "你的人格类型是",
+    "analysis": "性格分析",
+    "strengths": "核心优势",
+    "blindspots": "潜在盲点",
+    "career": "适合领域",
+    "export": "保存结果",
+    "retake": "重新测试"
+  }
+}

@@ -1,0 +1,89 @@
+:root {
+  /* 调色板 - 更柔和、高级的治愈系配色 */
+  --color-bg: #F9F7F2; /* 暖米色背景 */
+  --color-text-main: #4A4A4A; /* 深灰主字色，避免纯黑 */
+  --color-text-light: #8C8C8C; /* 浅灰辅助色 */
+  
+  /* 主色调 - 暖橙 */
+  --color-primary: #E6A23C;
+  --color-primary-hover: #D6902F;
+  --color-primary-light: #FFF5E6; /* 极浅的橙色背景 */
+  
+  /* 辅助色 - 柔和蓝 */
+  --color-secondary: #87C0CA;
+  
+  /* 界面元素 */
+  --color-surface: #FFFFFF;
+  --color-border: #EFEFEF;
+  
+  /* 圆角与阴影 */
+  --radius-card: 24px;
+  --radius-btn: 30px;
+  
+  /* 高级感阴影：多层叠加，更弥散 */
+  --shadow-soft: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.02), 
+    0 10px 15px -3px rgba(0, 0, 0, 0.04);
+    
+  --shadow-hover: 
+    0 10px 25px -5px rgba(230, 162, 60, 0.15), 
+    0 8px 10px -6px rgba(230, 162, 60, 0.1);
+
+  /* 字体 */
+  --font-main: 'Nunito', 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Arial, sans-serif;
+  
+  /* 动画曲线 */
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  /* 增加极微弱的噪点纹理，提升质感 (可选，这里用径向渐变模拟柔光) */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(230, 162, 60, 0.03) 0%, transparent 20%),
+    radial-gradient(circle at 90% 80%, rgba(135, 192, 202, 0.05) 0%, transparent 20%);
+  background-attachment: fixed;
+  
+  color: var(--color-text-main);
+  font-family: var(--font-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  color: var(--color-text-main);
+  letter-spacing: -0.02em; /* 微调字间距，更现代 */
+}
+
+p {
+  margin: 0 0 16px 0;
+}
+
+/* 全局过渡类 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s var(--ease-smooth);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}

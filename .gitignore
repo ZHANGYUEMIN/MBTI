@@ -1,0 +1,12 @@
+node_modules
+dist
+.DS_Store
+.env
+
+# Build Artifacts
+MBTI_Portable/
+www/
+
+# Generated Files (keep templates, ignore generated copies)
+server.ps1
+generate_*.ps1
