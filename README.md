@@ -1,62 +1,67 @@
-# MBTI Personality Test (Vue 3 + PowerShell)
+# MBTI 人格测试 (Vue 3 + PowerShell)
 
 (c) 2026 HAPPY GAMES
 
-A modern, portable MBTI personality test application built with Vue 3 and wrapped with a custom PowerShell launcher for offline usage on Windows.
+这是一个基于 Vue 3 开发的现代 MBTI 人格测试应用，并配备了 PowerShell 启动器，支持在 Windows 上离线运行。
 
-## 🌟 Features
+## 🌟 主要功能
 
-- **Portable Design**: Runs directly from a USB drive or local folder without installation.
-- **Modern UI**: Built with Vue 3 and Vite for a smooth, responsive experience.
-- **Offline Ready**: Includes a lightweight PowerShell-based HTTP server (`server.ps1`).
-- **No Dependencies**: Users don't need to install Node.js or Python; only Windows 10/11 built-in components are required.
+- **便携设计**：无需安装，支持 U 盘携带，即插即用。
+- **现代界面**：基于 Vue 3 和 Vite 构建，提供流畅的动画和响应式体验。
+- **离线可用**：内置轻量级 PowerShell HTTP 服务器 (`server.ps1`)。
+- **零依赖**：用户无需安装 Node.js 或 Python，仅需 Windows 10/11 系统自带组件。
+- **双语支持**：内置中英文切换功能。
 
-## 🛠️ Project Structure
+## 🛠️ 项目结构
 
-- `src/`: Vue 3 source code.
-- `launcher_template.bat`: Template for the Windows batch launcher.
-- `server_template.ps1`: Template for the PowerShell static file server.
-- `create_portable.bat`: Build script to generate the portable version.
+- `src/`: Vue 3 源代码目录。
+- `launcher_template.bat`: Windows 启动脚本模板。
+- `server_template.ps1`: PowerShell 静态文件服务器模板。
+- `create_portable.bat`: 用于生成便携版的构建脚本。
 
-## 🚀 Development
+## 🚀 在线体验
 
-### Prerequisites
+👉 [点击这里开始测试](https://zhangyuemin.github.io/MBTI/)
+
+## 📦 如何使用（便携版）
+
+1. 下载最新的 `MBTI_Portable` 压缩包（如果有）。
+2. 解压后双击 `启动测试.bat`。
+3. 应用将在默认浏览器中自动打开。
+
+## 💻 开发者指南
+
+### 环境要求
 
 - Node.js (v16+)
 - npm
 
-### Setup
+### 安装依赖
 
 ```bash
 npm install
 ```
 
-### Local Development
+### 本地开发
 
 ```bash
 npm run dev
 ```
 
-### Build Portable Version
+### 构建便携版
 
-Run the `create_portable.bat` script in the root directory:
+在根目录下运行 `create_portable.bat` 脚本：
 
 ```cmd
 .\create_portable.bat
 ```
 
-This will:
-1. Build the Vue project (`npm run build`).
-2. Create the `MBTI_Portable` folder.
-3. Copy all necessary assets and scripts.
-4. Generate a ready-to-distribute portable package.
+该脚本会自动：
+1. 构建 Vue 项目 (`npm run build`)。
+2. 创建 `MBTI_Portable` 目录。
+3. 复制所有必要文件。
+4. 生成可直接分发的便携包。
 
-## 📦 Usage (Portable Version)
-
-1. Open the `MBTI_Portable` folder.
-2. Double-click `启动测试.bat`.
-3. The application will launch in your default browser.
-
-## 📄 License
+## 📄 版权信息
 
 (c) 2026 HAPPY GAMES. All Rights Reserved.

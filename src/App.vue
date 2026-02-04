@@ -22,8 +22,13 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
+import { watch } from 'vue'
 
-const { locale } = useI18n()
+const { t, locale } = useI18n()
+
+watch(locale, (newLocale) => {
+  document.title = newLocale === 'zh' ? 'MBTI 人格测试' : 'MBTI Personality Test'
+}, { immediate: true })
 
 const toggleLang = () => {
   locale.value = locale.value === 'zh' ? 'en' : 'zh'
