@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBTI 人格测试</title>
+    <style>
+      #error-log { display: none; color: white; background: #d32f2f; position: fixed; top:0; left:0; width: 100%; z-index: 9999; padding: 20px; font-family: monospace; white-space: pre-wrap; box-sizing: border-box; }
+      #loading-msg { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: sans-serif; color: #666; text-align: center; }
+    </style>
+    <script type="module" crossorigin src="./assets/index-CR4uytt_.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DSLKYst7.css">
+  </head>
+  <body>
+    <div id="error-log"></div>
+    <div id="app">
+      <div id="loading-msg">
+        <h2>Loading...</h2>
+        <p>Please wait a moment.</p>
+        <small>If this stays for too long, please refresh or check console.</small>
+      </div>
+    </div>
+    
+    <!-- Error Handler Script -->
+    <script>
+      window.onerror = function(msg, src, lineno, colno, error) {
+        var el = document.getElementById('error-log');
+        el.style.display = 'block';
+        el.innerHTML += '[Runtime Error] ' + msg + '\nFile: ' + src + ':' + lineno + '\n\n';
+        return false;
+      };
+      window.addEventListener('unhandledrejection', function(event) {
+        var el = document.getElementById('error-log');
+        el.style.display = 'block';
+        el.innerHTML += '[Promise Error] ' + event.reason + '\n\n';
+      });
+    </script>
+    
+  </body>
+</html>
