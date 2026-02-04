@@ -36,13 +36,18 @@ copy /y "server_template.ps1" "%OUT_DIR%\server.ps1" > nul
 copy /y "launcher_template.bat" "%OUT_DIR%\启动测试.bat" > nul
 copy /y "便携版使用说明.md" "%OUT_DIR%\使用说明.txt" > nul
 
+echo [4/4] 正在打包为 ZIP...
+powershell -Command "Compress-Archive -Path '%OUT_DIR%' -DestinationPath '%OUT_DIR%.zip' -Force"
+
 echo.
 echo ==========================================
 echo 便携版制作完成！
-echo 文件夹位置: %OUT_DIR%
+echo.
+echo [文件夹] %OUT_DIR%
+echo [压缩包] %OUT_DIR%.zip
 echo.
 echo 使用方法:
-echo 1. 将 %OUT_DIR% 文件夹复制到任何 Windows 电脑
-echo 2. 双击运行 "启动测试.bat"
+echo 1. 将 %OUT_DIR%.zip 发送给用户
+echo 2. 用户解压后双击 "启动测试.bat" 即可运行
 echo ==========================================
 pause

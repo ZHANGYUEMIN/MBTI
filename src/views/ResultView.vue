@@ -109,7 +109,16 @@ const exportImage = async () => {
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
-      backgroundColor: '#F9F7F2' // Updated background color
+      backgroundColor: document.documentElement.classList.contains('dark') ? '#121212' : '#F9F7F2',
+      onclone: (clonedDoc) => {
+        // Fix for glassmorphism export issues
+        const clonedElement = clonedDoc.getElementById('result-content')
+        if (clonedElement) {
+          clonedElement.style.boxShadow = 'none'
+          clonedElement.style.backdropFilter = 'none'
+          clonedElement.style.background = document.documentElement.classList.contains('dark') ? '#1E1E1E' : '#FFFFFF'
+        }
+      }
     })
     
     const link = document.createElement('a')

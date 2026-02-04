@@ -1,6 +1,10 @@
 <template>
   <div class="app-container">
     <div class="lang-switch">
+      <button @click="toggleTheme" class="icon-btn" :title="isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'">
+        <Sun v-if="isDark" size="18" />
+        <Moon v-else size="18" />
+      </button>
       <button 
         @click="toggleLang" 
         class="lang-btn"
@@ -22,9 +26,29 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { watch } from 'vue'
+import { watch, ref, onMounted } from 'vue'
+import { Moon, Sun } from 'lucide-vue-next'
 
 const { t, locale } = useI18n()
+const isDark = ref(false)
+
+const toggleTheme = () => {
+  isDark.value = !isDark.value
+  if (isDark.value) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
+  localStorage.setItem('theme', isDark.value ? 'dark' : 'light')
+}
+
+onMounted(() => {
+  const savedTheme = localStorage.getItem('theme')
+  if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    isDark.value = true
+    document.documentElement.classList.add('dark')
+  }
+})
 
 watch(locale, (newLocale) => {
   document.title = newLocale === 'zh' ? 'MBTI 人格测试' : 'MBTI Personality Test'
@@ -52,16 +76,46 @@ const toggleLang = () => {
   top: 10px;
   right: 10px;
   z-index: 100;
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: var(--color-surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-main);
+  border: var(--glass-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all 0.3s;
+}
+
+.icon-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  color: var(--color-primary);
 }
 
 .lang-btn {
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--color-surface);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 14px;
   color: var(--color-text-main);
   transition: all 0.3s;
-  border: 1px solid transparent;
+  border: var(--glass-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  height: 36px;
+  display: flex;
+  align-items: center;
 }
 
 .lang-btn:hover {

@@ -1,5 +1,5 @@
 :root {
-  /* 调色板 - 更柔和、高级的治愈系配色 */
+  /* 调色板 - 更柔和、高级的治愈系配色 (Light Mode) */
   --color-bg: #F9F7F2; /* 暖米色背景 */
   --color-text-main: #4A4A4A; /* 深灰主字色，避免纯黑 */
   --color-text-light: #8C8C8C; /* 浅灰辅助色 */
@@ -13,14 +13,16 @@
   --color-secondary: #87C0CA;
   
   /* 界面元素 */
-  --color-surface: #FFFFFF;
+  --color-surface: rgba(255, 255, 255, 0.9); /* 轻微透明 */
   --color-border: #EFEFEF;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
   
   /* 圆角与阴影 */
   --radius-card: 24px;
   --radius-btn: 30px;
   
-  /* 高级感阴影：多层叠加，更弥散 */
+  /* 高级感阴影 */
   --shadow-soft: 
     0 4px 6px -1px rgba(0, 0, 0, 0.02), 
     0 10px 15px -3px rgba(0, 0, 0, 0.04);
@@ -37,14 +39,40 @@
   --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* 深色玻璃拟态模式 (Dark Glassmorphism) */
+html.dark {
+  --color-bg: #121212; /* 深邃黑背景 */
+  --color-text-main: #E0E0E0; /* 柔白字色 */
+  --color-text-light: #A0A0A0; /* 灰白辅助色 */
+  
+  /* 主色调 - 霓虹橙 */
+  --color-primary: #FFB74D;
+  --color-primary-hover: #FFA726;
+  --color-primary-light: rgba(255, 183, 77, 0.15);
+  
+  /* 辅助色 - 冰蓝 */
+  --color-secondary: #64B5F6;
+  
+  /* 界面元素 - 磨砂玻璃 */
+  --color-surface: rgba(30, 30, 30, 0.6); /* 深色半透明 */
+  --color-border: rgba(255, 255, 255, 0.1);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  
+  /* 阴影调整 */
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-hover: 0 0 15px rgba(255, 183, 77, 0.3);
+}
+
 body {
   margin: 0;
   background-color: var(--color-bg);
-  /* 增加极微弱的噪点纹理，提升质感 (可选，这里用径向渐变模拟柔光) */
+  /* 动态背景纹理 */
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(230, 162, 60, 0.03) 0%, transparent 20%),
-    radial-gradient(circle at 90% 80%, rgba(135, 192, 202, 0.05) 0%, transparent 20%);
+    radial-gradient(circle at 10% 20%, rgba(230, 162, 60, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(135, 192, 202, 0.08) 0%, transparent 40%);
   background-attachment: fixed;
+  transition: background-color 0.5s var(--ease-smooth);
   
   color: var(--color-text-main);
   font-family: var(--font-main);
@@ -77,7 +105,14 @@ p {
   margin: 0 0 16px 0;
 }
 
-/* 全局过渡类 */
+/* 玻璃拟态卡片效果 */
+.glass-card {
+  background: var(--color-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s var(--ease-smooth);

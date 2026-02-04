@@ -5,6 +5,7 @@ dist
 
 # Build Artifacts
 MBTI_Portable/
+!MBTI_Portable.zip
 www/
 
 # Generated Files (keep templates, ignore generated copies)

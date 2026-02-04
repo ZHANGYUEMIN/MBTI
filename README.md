@@ -23,6 +23,16 @@
 
 👉 [点击这里开始测试](https://zhangyuemin.github.io/MBTI/)
 
+## 📥 下载离线版 (推荐)
+
+如果您想在没有网络的电脑上使用，或者保存到 U 盘携带：
+
+👉 **[点击下载便携版 (MBTI_Portable.zip)](https://github.com/ZHANGYUEMIN/MBTI/raw/main/MBTI_Portable.zip)**
+
+**使用方法：**
+1. 下载并解压压缩包。
+2. 双击运行 `启动测试.bat`。
+
 ## 📦 如何使用（便携版）
 
 1. 下载最新的 `MBTI_Portable` 压缩包（如果有）。

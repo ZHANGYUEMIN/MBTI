@@ -4,7 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/MBTI/',
+  base: './',
   plugins: [vue()],
   resolve: {
     alias: {
