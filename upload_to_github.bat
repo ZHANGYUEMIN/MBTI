@@ -3,7 +3,7 @@ setlocal
 color 0A
 
 echo =======================================================
-echo          GitHub Uploader Tool
+echo          GitHub Uploader Tool (Force Mode)
 echo          (c) 2026 HAPPY GAMES
 echo =======================================================
 echo.
@@ -22,29 +22,33 @@ if not exist ".git" (
     git branch -M main
 )
 
+REM Ensure Git user is configured for this repository
+git config user.name "ZHANGYUEMIN"
+git config user.email "uploader@mbti.local"
+
 echo [INFO] Adding files...
 git add .
 
 echo [INFO] Committing changes...
-git commit -m "Update project files"
+git commit -m "Fresh upload" 2>nul
 
 echo [INFO] Configuring remote repository...
 git remote remove origin 2>nul
 git remote add origin https://github.com/ZHANGYUEMIN/MBTI.git
 
-echo [INFO] Pushing to GitHub...
+echo [INFO] Pushing to GitHub (Force)...
 echo.
 echo [NOTE] Please sign in to GitHub if a window pops up.
 echo.
-git push -u origin main
+git push -u origin main --force
 
 if %errorlevel% neq 0 (
     echo.
     echo [ERROR] Push failed!
     echo Possible causes:
-    echo 1. Repository does not exist or permission denied
-    echo 2. Network connection issue
-    echo 3. Authentication cancelled
+    echo 1. Network connection issue
+    echo 2. Authentication cancelled
+    echo 3. GitHub repository does not exist
     echo.
 ) else (
     echo.
