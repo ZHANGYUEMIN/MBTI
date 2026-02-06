@@ -192,6 +192,7 @@ const startTest = async (version) => {
 }
 
 @media (max-width: 600px) {
+  /* .hero { margin-top: 3rem; } 已通过 Header 布局解决，移除此 Hack */
   .title { font-size: 2.2rem; }
   .version-cards { flex-direction: column; }
   .card { width: 100%; box-sizing: border-box; }

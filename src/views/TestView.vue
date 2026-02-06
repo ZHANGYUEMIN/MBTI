@@ -55,7 +55,10 @@
                   class="scale-btn size-sm color-neutral"
                   :class="{ selected: store.answers[currentQuestion.id] === 0 }"
                   @click="handleAnswer(0)"
-                ></button>
+                  :title="t('test.neutral')"
+                >
+                  <span class="neutral-hint" v-if="store.answers[currentQuestion.id] === 0">{{ t('test.neutral') }}</span>
+                </button>
                 
                 <!-- +1: Option 1 -->
                 <button 
@@ -198,6 +201,22 @@ const handleNext = () => {
 
 /* Question Card */
 .question-card {
+  position: relative;
+}
+
+.neutral-hint {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  white-space: nowrap;
+  margin-top: 4px;
+  pointer-events: none;
+}
+
+.scale-btn {
   padding: 1rem 0;
 }
 

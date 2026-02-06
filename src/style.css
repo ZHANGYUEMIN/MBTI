@@ -13,9 +13,9 @@
   --color-secondary: #87C0CA;
   
   /* 界面元素 */
-  --color-surface: rgba(255, 255, 255, 0.9); /* 轻微透明 */
+  --color-surface: rgba(255, 255, 255, 0.7); /* 更透明，配合模糊 */
   --color-border: #EFEFEF;
-  --glass-border: 1px solid rgba(255, 255, 255, 0.5);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.6);
   --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
   
   /* 圆角与阴影 */
@@ -73,12 +73,28 @@ body {
     radial-gradient(circle at 90% 80%, rgba(135, 192, 202, 0.08) 0%, transparent 40%);
   background-attachment: fixed;
   transition: background-color 0.5s var(--ease-smooth);
+  min-height: 100vh;
   
   color: var(--color-text-main);
   font-family: var(--font-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-attachment: scroll; /* 移动端禁用 fixed 背景以避免渲染问题 */
+  }
+}
+
+/* 全局玻璃拟态类 */
+.glass-card {
+  background: var(--color-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 button {
@@ -98,27 +114,4 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-weight: 700;
   color: var(--color-text-main);
-  letter-spacing: -0.02em; /* 微调字间距，更现代 */
-}
-
-p {
-  margin: 0 0 16px 0;
-}
-
-/* 玻璃拟态卡片效果 */
-.glass-card {
-  background: var(--color-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-}
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s var(--ease-smooth);
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }

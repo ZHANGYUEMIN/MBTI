@@ -137,7 +137,7 @@ const questions = [
     direction: 'S',
     weight: 1,
     text: {
-      zh: '你更信任亲身经验，还是直觉与想象？',
+      zh: '你更信任亲身经验和证据，还是直觉与未来的可能性？',
       en: 'Do you trust personal experience or intuition and imagination more?'
     },
     options: [
@@ -237,7 +237,7 @@ const questions = [
     direction: 'T',
     weight: 1,
     text: {
-      zh: '做决定时，你更看重客观合理性，还是他人的感受？',
+      zh: '做决定时，你更看重客观事实与逻辑，还是他人的感受与和谐？',
       en: 'When deciding, do you value objective rationality or others feelings more?'
     },
     options: [
@@ -351,7 +351,7 @@ const questions = [
     direction: 'J',
     weight: 1,
     text: {
-      zh: '计划被打乱时，你更感到不适，还是无所谓？',
+      zh: '当计划被打乱时，你会感到不适，还是觉得无所谓？',
       en: 'When plans are disrupted, do you feel uncomfortable or indifferent?'
     },
     options: [
@@ -421,7 +421,7 @@ const questions = [
     direction: 'J',
     weight: 1,
     text: {
-      zh: '你更容易被清晰规则吸引，还是开放选择吸引？',
+      zh: '你更喜欢清晰明确的规则，还是自由开放的选择？',
       en: 'Are you more attracted to clear rules or open choices?'
     },
     options: [

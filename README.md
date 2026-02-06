@@ -1,77 +1,89 @@
-# MBTI 人格测试 (Vue 3 + PowerShell)
+# MBTI 人格测试 (MBTI Personality Test)
 
-(c) 2026 HAPPY GAMES
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-这是一个基于 Vue 3 开发的现代 MBTI 人格测试应用，并配备了 PowerShell 启动器，支持在 Windows 上离线运行。
+一个现代、美观且响应式的 MBTI 16型人格测试应用。支持中英双语，提供快速版（30题）和详细版（60题）两种测试模式。
 
-## 🌟 主要功能
+🌐 **在线体验**: [https://zhangyuemin.github.io/MBTI/](https://zhangyuemin.github.io/MBTI/)
 
-- **便携设计**：无需安装，支持 U 盘携带，即插即用。
-- **现代界面**：基于 Vue 3 和 Vite 构建，提供流畅的动画和响应式体验。
-- **离线可用**：内置轻量级 PowerShell HTTP 服务器 (`server.ps1`)。
-- **零依赖**：用户无需安装 Node.js 或 Python，仅需 Windows 10/11 系统自带组件。
-- **双语支持**：内置中英文切换功能。
+---
 
-## 🛠️ 项目结构
+## ✨ 功能特色
 
-- `src/`: Vue 3 源代码目录。
-- `launcher_template.bat`: Windows 启动脚本模板。
-- `server_template.ps1`: PowerShell 静态文件服务器模板。
-- `create_portable.bat`: 用于生成便携版的构建脚本。
+*   **双语支持**: 🇨🇳 中文 / 🇺🇸 English 一键切换
+*   **双模式测试**:
+    *   ⚡ **快速版**: 30道精选题目，3分钟快速测出结果。
+    *   🧠 **详细版**: 60道深度题目，更精准的性格剖析。
+*   **精美 UI**:
+    *   支持 🌞 浅色 / 🌙 深色模式（自动跟随系统）。
+    *   采用玻璃拟态 (Glassmorphism) 设计风格。
+    *   丝滑的转场与启动动画。
+*   **专业报告**:
+    *   动态生成的个性化评语。
+    *   详细的维度分析图表 (E/I, S/N, T/F, J/P)。
+    *   支持一键生成结果图片并保存。
+*   **移动端适配**: 完美适配手机、平板和桌面端。
 
-## 🚀 在线体验
+---
 
-👉 [点击这里开始测试](https://zhangyuemin.github.io/MBTI/)
+## 🚀 如何使用
 
-## 📥 下载离线版 (推荐)
+### 方式一：在线访问 (推荐)
+直接点击访问 GitHub Pages 部署版本：
+👉 [**开始测试**](https://zhangyuemin.github.io/MBTI/)
 
-如果您想在没有网络的电脑上使用，或者保存到 U 盘携带：
+### 方式二：下载便携版 (离线运行)
+如果您需要在没有网络的环境下使用，或想分享给朋友：
+1. 下载最新的 `MBTI_Portable.zip` 压缩包。
+2. 解压整个文件夹。
+3. 双击运行 **`启动测试.bat`**。
+4. 浏览器会自动打开测试页面。
 
-👉 **[点击下载便携版 (MBTI_Portable.zip)](https://github.com/ZHANGYUEMIN/MBTI/raw/main/MBTI_Portable.zip)**
+---
 
-**使用方法：**
-1. 下载并解压压缩包。
-2. 双击运行 `启动测试.bat`。
+## 🛠️ 开发者指南
 
-## 📦 如何使用（便携版）
+如果您想修改源码或进行二次开发：
 
-1. 下载最新的 `MBTI_Portable` 压缩包（如果有）。
-2. 解压后双击 `启动测试.bat`。
-3. 应用将在默认浏览器中自动打开。
+### 1. 环境准备
+确保您已安装 [Node.js](https://nodejs.org/) (v16+)。
 
-## 💻 开发者指南
-
-### 环境要求
-
-- Node.js (v16+)
-- npm
-
-### 安装依赖
-
+### 2. 安装依赖
 ```bash
 npm install
 ```
 
-### 本地开发
-
+### 3. 启动开发服务器
 ```bash
 npm run dev
 ```
 
-### 构建便携版
+### 4. 构建项目
+```bash
+# 构建网页版
+npm run build
 
-在根目录下运行 `create_portable.bat` 脚本：
-
-```cmd
+# 构建便携版 (Windows)
 .\create_portable.bat
+
+# 部署到 GitHub Pages
+.\deploy_to_gh_pages.bat
 ```
 
-该脚本会自动：
-1. 构建 Vue 项目 (`npm run build`)。
-2. 创建 `MBTI_Portable` 目录。
-3. 复制所有必要文件。
-4. 生成可直接分发的便携包。
+---
 
-## 📄 版权信息
+## 📁 项目结构
 
-(c) 2026 HAPPY GAMES. All Rights Reserved.
+```
+src/
+├── data/           # 题目数据 (questions_simple.js, etc.)
+├── i18n/           # 国际化语言包 (zh.json, en.json)
+├── stores/         # Pinia 状态管理
+├── views/          # 页面组件 (Home, Test, Result)
+├── App.vue         # 根组件
+└── style.css       # 全局样式
+```
+
+---
+
+(c) 2026 HAPPY GAMES. All rights reserved.

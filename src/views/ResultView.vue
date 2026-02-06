@@ -1,6 +1,6 @@
 <template>
   <div class="result-view" v-if="result">
-    <div id="result-content" class="result-card animate-fade-up">
+    <div id="result-content" class="result-card animate-fade-up glass-card">
       <div class="header">
         <p class="subtitle">{{ t('result.title') }}</p>
         <h1 class="type-title">
@@ -32,6 +32,10 @@
       </div>
 
       <div class="analysis animate-fade-up delay-800">
+        <div class="personalized-comment section glass-card">
+          <p>{{ personalizedComment }}</p>
+        </div>
+        
         <div class="section">
           <h3><FileText :size="20" /> {{ t('result.analysis') }}</h3>
           <p>{{ result.details[locale].traits }}</p>
@@ -83,6 +87,32 @@ const store = useMbtiStore()
 
 const result = computed(() => store.result)
 
+const personalizedComment = computed(() => {
+  if (!result.value) return ''
+  const p = result.value.percentages
+  const lang = locale.value
+  let comments = []
+
+  // E/I
+  if (p.E > 75) comments.push(lang === 'zh' ? '你是一个能量爆棚的外向者，社交是你的充电站！' : 'You are a highly energetic extrovert!')
+  else if (p.I > 75) comments.push(lang === 'zh' ? '你享受独处的宁静，内心世界丰富而深邃。' : 'You enjoy the peace of solitude and have a rich inner world.')
+  else comments.push(lang === 'zh' ? '你在动与静之间保持着微妙的平衡，既能享受社交也能独处。' : 'You maintain a balance between social activity and solitude.')
+
+  // N/S
+  if (p.N > 70) comments.push(lang === 'zh' ? '你富有想象力，总是着眼于未来和可能性。' : 'You are imaginative and focused on future possibilities.')
+  else if (p.S > 70) comments.push(lang === 'zh' ? '你脚踏实地，善于处理具体细节和现实问题。' : 'You are grounded and good at handling concrete details.')
+
+  // T/F
+  if (p.T > 70) comments.push(lang === 'zh' ? '你逻辑严密，善于理性分析问题。' : 'You are logical and good at rational analysis.')
+  else if (p.F > 70) comments.push(lang === 'zh' ? '你富有同情心，决策时常考虑他人的感受。' : 'You are empathetic and consider others feelings in decisions.')
+
+  // J/P
+  if (p.J > 75) comments.push(lang === 'zh' ? '你喜欢井井有条，计划性强，是天生的组织者。' : 'You like order and planning, a natural organizer.')
+  else if (p.P > 75) comments.push(lang === 'zh' ? '你灵活随性，善于适应变化，总能发现意外的惊喜。' : 'You are flexible and spontaneous, good at adapting to change.')
+
+  return comments.join(' ')
+})
+
 onMounted(() => {
   if (!result.value) {
     router.push('/')
@@ -106,20 +136,50 @@ const exportImage = async () => {
   if (!element) return
   
   try {
+    // 临时移除动画类，防止截图时元素未显示
+    element.classList.remove('animate-fade-up')
+    
     const canvas = await html2canvas(element, {
       scale: 2,
       useCORS: true,
       backgroundColor: document.documentElement.classList.contains('dark') ? '#121212' : '#F9F7F2',
+      logging: false,
       onclone: (clonedDoc) => {
-        // Fix for glassmorphism export issues
         const clonedElement = clonedDoc.getElementById('result-content')
         if (clonedElement) {
+          // 移除所有动画类
+          clonedElement.classList.remove('animate-fade-up')
+          
+          // 强制重置样式以保证清晰度
           clonedElement.style.boxShadow = 'none'
           clonedElement.style.backdropFilter = 'none'
+          clonedElement.style.webkitBackdropFilter = 'none'
+          // 导出时使用纯色背景，避免透明度问题
           clonedElement.style.background = document.documentElement.classList.contains('dark') ? '#1E1E1E' : '#FFFFFF'
+          clonedElement.style.borderRadius = '0' // 可选：导出时去掉圆角？不，保留圆角好看点
+          
+          // 强制所有子元素可见
+          const allElements = clonedElement.querySelectorAll('*')
+          allElements.forEach(el => {
+            el.classList.remove('animate-fade-up', 'animate-pop', 'animate-fade-in', 'delay-500', 'delay-800', 'delay-1000')
+            el.style.setProperty('opacity', '1', 'important')
+            el.style.setProperty('transform', 'none', 'important')
+            el.style.setProperty('animation', 'none', 'important')
+            el.style.setProperty('transition', 'none', 'important')
+          })
+          
+          // 专门修复图表行
+          const chartRows = clonedElement.querySelectorAll('.chart-row')
+          chartRows.forEach(row => {
+             row.style.opacity = '1'
+             row.style.transform = 'none'
+          })
         }
       }
     })
+    
+    // 恢复原元素的类（其实不恢复也行，因为页面不会刷新）
+    element.classList.add('animate-fade-up')
     
     const link = document.createElement('a')
     link.download = `MBTI-Result-${result.value.type}.png`
@@ -127,7 +187,7 @@ const exportImage = async () => {
     link.click()
   } catch (err) {
     console.error('Export failed', err)
-    alert('Export failed, please try again.')
+    alert('导出图片失败，请重试或截屏保存。')
   }
 }
 </script>
@@ -262,6 +322,21 @@ const exportImage = async () => {
 .analysis {
   opacity: 0;
   /* Animation handled by class */
+}
+
+.personalized-comment {
+  margin-bottom: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: var(--color-primary-light);
+  border: 1px solid rgba(230, 162, 60, 0.2);
+}
+
+.personalized-comment p {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-primary-hover);
+  font-size: 1.1rem;
 }
 
 .section {

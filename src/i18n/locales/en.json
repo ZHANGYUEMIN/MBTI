@@ -10,7 +10,8 @@
   "test": {
     "progress": "Progress",
     "prev": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "neutral": "Neutral"
   },
   "result": {
     "title": "Your Personality Type",
